@@ -29,7 +29,7 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} && \
     ./configure \
         --sbin-path=/usr/local/sbin/nginx \
         --conf-path=/etc/nginx/nginx.conf \
-        --error-log-path=/var/log/nginx/error.log \
+        --error-log-path=/usr/local/nginx/logs/error.log \
         --pid-path=/var/run/nginx/nginx.pid \
         --lock-path=/var/lock/nginx/nginx.lock \
         --http-log-path=/var/log/nginx/access.log \
@@ -45,7 +45,7 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} && \
 
 # Forward logs to Docker
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log
+    ln -sf /dev/stderr /usr/local/nginx/logs/error.log
 
 # Set up config file
 COPY nginx.conf /etc/nginx/nginx.conf
